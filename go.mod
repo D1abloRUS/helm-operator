@@ -10,36 +10,34 @@ require (
 	github.com/fluxcd/flux v1.17.2-0.20200121140732-3903cf8e71c3
 	github.com/fluxcd/helm-operator/pkg/install v0.0.0-00010101000000-000000000000
 	github.com/garyburd/redigo v1.6.0 // indirect
-	github.com/go-kit/kit v0.9.0
+	github.com/go-kit/kit v0.10.0
 	github.com/gofrs/uuid v3.2.0+incompatible // indirect
-	github.com/golang/protobuf v1.3.2
-	github.com/google/go-cmp v0.4.0
+	github.com/golang/protobuf v1.4.2
+	github.com/google/go-cmp v0.5.0
 	github.com/gorilla/mux v1.7.3
-	github.com/helm/helm-2to3 v0.5.1
+	github.com/helm/helm-2to3 v0.7.0
 	github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.6 // indirect
 	github.com/ncabatoff/go-seq v0.0.0-20180805175032-b08ef85ed833
 	github.com/pkg/errors v0.9.1
-	github.com/prometheus/client_golang v1.2.1
+	github.com/prometheus/client_golang v1.7.1
 	github.com/spf13/pflag v1.0.5
-	github.com/stretchr/testify v1.4.0
+	github.com/stretchr/testify v1.6.1
 	github.com/yvasiyarov/go-metrics v0.0.0-20150112132944-c25f46c4b940 // indirect
 	github.com/yvasiyarov/newrelic_platform_go v0.0.0-20160601141957-9c099fbc30e9 // indirect
-	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e // indirect
-	golang.org/x/sys v0.0.0-20200327173247-9dae0f8f5775 // indirect
 	google.golang.org/grpc v1.27.0
-	helm.sh/helm/v3 v3.1.2
-	k8s.io/api v0.17.2
-	k8s.io/apiextensions-apiserver v0.17.2
-	k8s.io/apimachinery v0.17.2
-	k8s.io/cli-runtime v0.17.2
+	helm.sh/helm/v3 v3.4.1
+	k8s.io/api v0.19.3
+	k8s.io/apiextensions-apiserver v0.19.3
+	k8s.io/apimachinery v0.19.3
+	k8s.io/cli-runtime v0.19.3
 	k8s.io/client-go v11.0.0+incompatible
-	k8s.io/helm v2.16.3+incompatible
+	k8s.io/helm v2.16.10+incompatible
 	k8s.io/klog v1.0.0
-	k8s.io/kubectl v0.17.2
-	k8s.io/utils v0.0.0-20191114184206-e782cd3c129f
-	sigs.k8s.io/yaml v1.1.0
+	k8s.io/kubectl v0.19.3
+	k8s.io/utils v0.0.0-20200731180307-f00132d28269
+	sigs.k8s.io/yaml v1.2.0
 )
 
 // github.com/fluxcd/helm-operator/pkg/install lives in this very reprository, so use that
@@ -54,11 +52,7 @@ replace (
 	github.com/fluxcd/flux/pkg/install => github.com/fluxcd/flux/pkg/install v0.0.0-20200206191601-8b676b003ab0
 )
 
-// Force upgrade because of a transitive downgrade.
-// github.com/fluxcd/helm-operator
-// +-> github.com/fluxcd/flux@v1.17.2
-//     +-> k8s.io/client-go@v11.0.0+incompatible
-replace k8s.io/client-go => k8s.io/client-go v0.17.2
+replace k8s.io/client-go => k8s.io/client-go v0.19.3
 
 // Force upgrade because of a transitive downgrade.
 // github.com/fluxcd/flux
@@ -66,17 +60,11 @@ replace k8s.io/client-go => k8s.io/client-go v0.17.2
 //     +-> helm.sh/helm/v3@v3.1.2
 //     +-> helm.sh/helm@v2.16.1
 replace (
-	helm.sh/helm/v3 => helm.sh/helm/v3 v3.1.2
+	helm.sh/helm/v3 => helm.sh/helm/v3 v3.4.1
 	k8s.io/helm => k8s.io/helm v2.16.3+incompatible
 )
 
-// Force upgrade because of transitive downgrade.
-// runc >=1.0.0-RC10 patches CVE-2019-19921.
-// runc >=1.0.0-RC7 patches CVE-2019-5736.
-// github.com/fluxcd/helm-operator
-// +-> helm.sh/helm/v3@v3.1.2
-//     +-> github.com/opencontainers/runc@v0.1.1
-replace github.com/opencontainers/runc => github.com/opencontainers/runc v1.0.0-rc10
-
 // helm-2to3 package replaces these packages in its go.mod
 replace github.com/Azure/go-autorest => github.com/Azure/go-autorest v13.3.2+incompatible
+
+replace github.com/maorfr/helm-plugin-utils => github.com/maorfr/helm-plugin-utils v0.0.0-20200827170302-51b70049c73f

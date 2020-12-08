@@ -378,7 +378,7 @@ func (c *GitChartSync) getAuthFromSecret(secretRef *v1.ObjectReference) (string,
 
 	secretName := secretRef.Name
 	ns := secretRef.Namespace
-	secret, err := c.coreV1Client.Secrets(ns).Get(secretName, metav1.GetOptions{})
+	secret, err := c.coreV1Client.Secrets(ns).Get(context.Background(), secretName, metav1.GetOptions{})
 	if err != nil {
 		return "", "", err
 	}
